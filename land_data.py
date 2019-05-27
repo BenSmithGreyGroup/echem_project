@@ -35,7 +35,8 @@ def process_land(directory, file, save=False, savedirectory=None, remove_short_c
     # Finding all sheets with Record in after the first
     for sheet_name in names[1:]:
         if "Record" in sheet_name:
-            data_sheets.append(xlsx.parse(sheet_name, header=None))
+            if len(xlsx.parse(sheet_name, header=None)) != 0:
+                data_sheets.append(xlsx.parse(sheet_name, header=None))
 
     # fixing columns for subsequent data sheets (no header for these in input file
     for sheet in data_sheets:

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-def dqdv_extraction(capacity, voltage, smoothing=(0.0, 0.00001, 0.00005, 0.0001,
+def dqdv_extraction(capacity, voltage, smoothing=(0.0, 1e-5, 0.00005, 0.0001,
                                                   0.0005, 0.001, 0.005, 0.01, 0.05, 0.1)):
 
     from scipy.interpolate import splrep, splev
