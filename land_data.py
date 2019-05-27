@@ -121,7 +121,7 @@ def process_land(directory, file, save=False, savedirectory=None, remove_short_c
         elif 'SCapacity/mAh/g' in [i for i in df.columns]:
             dataframe['SCapacity/mAh/g'] = df['SCapacity/mAh/g']
         else:
-            print('WARNING, no mass supplied and no SCapacity exported - no SCapacity will be processed')
+            print(f'{file} - WARNING, no mass supplied and no SCapacity exported - no SCapacity will be processed')
 
         filename = file.split('.')[0]
 

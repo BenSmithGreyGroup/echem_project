@@ -42,7 +42,7 @@ def process_bio(directory, file, save=-False, savedirectory=None, remove_short_c
                 mass = float(mass_line.split()[-2]) * 1e-3
     searchfile.close()
     if mass is None:
-        print('WARNING: no mass supplied or found in file - no specific capacity information will be processed \n supply mass as variable in function call')
+        print(f'{file} - WARNING: no mass supplied or found in file - no specific capacity information will be processed \n supply mass as variable in function call')
     # -1 because want column headings and that's the number that gets them
     header_lines_to_skip = int(header_lines_to_skip_line.split()[-1]) - 1
 
