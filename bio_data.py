@@ -16,15 +16,21 @@ def process_bio(directory, file, save=-False, savedirectory=None, remove_short_c
     the mass as a different unit you will need to edit the scaling factor (1e-3) currently to whatever is suitable to
     convert from your unit to g
 
-    :param savedirectory: Directory to save .csv file to if desired
+    :param directory: Directory to read .mpt or .txt file from - end in '/'
     :param file: .mpt or .txt file to read from EC lab
     :param save: If .csv file is to be saved - True, else False, default False
-    :param directory: Directory to read .mpt or .txt file from - end in '/'
+    :param savedirectory: Directory to save .csv file to if desired - must end in '/'
     :param remove_short_cycles: If you want to delete cycles < 10s - not really a full cycle but sometimes appear
                                 default = True
     :param remove_cv: Remove constant voltage cycles - default =True
     :param file_check_dict: If you want to have a check dictionary -
-                            to save any weird results that might need more checking
+                            to save any weird results that might need more checking. 
+                            Key will be file, value will be list of two lists : [[], []]
+                            Cycle number will be recorded in the lists
+                            List 1 if cycle has less than 100 data points in it
+                            List 2 if the direction of voltage change is opposite to what is expected, 
+                            e.g 1, 3, 5 should be discharge and therefore dV should be negative, 
+                            if it is positive the cycle will be stored in the 2nd list
     :param mass If you want to input a manual mass to overide what is in the file header - units = grams
     :return:
     """
