@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-def process_bio(directory, file, save=-False, savedirectory=None, remove_short_cycles=True, remove_cv=True,
-                    file_check_dict=None, mass=None):
+def process_bio(directory, file, save=False, savedirectory=None, remove_short_cycles=True, remove_cv=True,
+                    file_check_dict=None, mass=None, plot=True):
 
     """
 
@@ -126,6 +126,15 @@ def process_bio(directory, file, save=-False, savedirectory=None, remove_short_c
     if save:
         filename = file.split('.')[0]
         dataframe.to_csv(savedirectory + '{}.csv'.format(filename))
+        
+    if plot:
+        for cycle in df['Cycle'].unique():
+            plt.plot(df[df['Cycle'] == cycle]['Capacity/mAh'], df[df['Cycle'] == cycle]['Voltage/V'])
+        plt.xlabel('Capacity/mAh')
+        plt.ylabel('Voltage/V')
+        plt.show()
+        plt.close()
+        
     return dataframe
 
 if __name__ == "__main__":
