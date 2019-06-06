@@ -107,36 +107,36 @@ def process_land(directory, file, save=False, savedirectory=None, remove_short_c
                 file_check_dict.setdefault(file, [[], []])
                 file_check_dict[file][1].append(cycle)
 
-        # Setting up and populating the export dataframe - will have same columns as the bio export function
-        dataframe = pd.DataFrame()
-        dataframe['Cycle'] = df['Cycle']
-        dataframe['Machine'] = 'land'
-        dataframe['Mode'] = df['State']
-        dataframe['Current/mA'] = df['Current/mA']
-        dataframe['Voltage/V'] = df['Voltage/V']
-        dataframe['Capacity/mAh'] = df['Capacity/mAh']
+    # Setting up and populating the export dataframe - will have same columns as the bio export function
+    dataframe = pd.DataFrame()
+    dataframe['Cycle'] = df['Cycle']
+    dataframe['Machine'] = 'land'
+    dataframe['Mode'] = df['State']
+    dataframe['Current/mA'] = df['Current/mA']
+    dataframe['Voltage/V'] = df['Voltage/V']
+    dataframe['Capacity/mAh'] = df['Capacity/mAh']
 
-        if mass is not None:
-            dataframe['SCapacity/mAh/g'] = dataframe['Capacity/mAh'] / mass
+    if mass is not None:
+        dataframe['SCapacity/mAh/g'] = dataframe['Capacity/mAh'] / mass
 
-        elif 'SCapacity/mAh/g' in [i for i in df.columns]:
-            dataframe['SCapacity/mAh/g'] = df['SCapacity/mAh/g']
-        else:
-            print(f'{file} - WARNING, no mass supplied and no SCapacity exported - no SCapacity will be processed')
+    elif 'SCapacity/mAh/g' in [i for i in df.columns]:
+        dataframe['SCapacity/mAh/g'] = df['SCapacity/mAh/g']
+    else:
+        print(f'{file} - WARNING, no mass supplied and no SCapacity exported - no SCapacity will be processed')
 
-        filename = file.split('.')[0]
+    filename = file.split('.')[0]
 
-        if save:
-            dataframe.to_csv(savedirectory + '{}.csv'.format(filename))
+    if save:
+        dataframe.to_csv(savedirectory + '{}.csv'.format(filename))
 
-        if plot:
-            for cycle in df['Cycle'].unique():
-                plt.plot(df[df['Cycle'] == cycle]['Capacity/mAh'], df[df['Cycle'] == cycle]['Voltage/V'])
-            plt.xlabel('Capacity/mAh')
-            plt.ylabel('Voltage/V')
-            plt.show()
-            plt.close()
-        return dataframe
+    if plot:
+        for cycle in df['Cycle'].unique():
+            plt.plot(df[df['Cycle'] == cycle]['Capacity/mAh'], df[df['Cycle'] == cycle]['Voltage/V'])
+        plt.xlabel('Capacity/mAh')
+        plt.ylabel('Voltage/V')
+        plt.show()
+        plt.close()
+    return dataframe
 
 if __name__ == "__main__":
     test_directory = '/Users/ben/Google Drive/Research Project/Colab Data/land data yanting correct/'
