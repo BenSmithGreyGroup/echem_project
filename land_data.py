@@ -110,6 +110,7 @@ def process_land(directory, file, save=False, savedirectory=None, remove_short_c
     # Setting up and populating the export dataframe - will have same columns as the bio export function
     dataframe = pd.DataFrame()
     dataframe['Cycle'] = df['Cycle']
+    dataframe['Full Cycle'] = np.ceil(df['Cycle']/2).apply(int)
     dataframe['Machine'] = 'land'
     dataframe['Mode'] = df['State']
     dataframe['Current/mA'] = df['Current/mA']

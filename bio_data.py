@@ -100,6 +100,8 @@ def process_bio(directory, file, save=False, savedirectory=None, remove_short_cy
     # Export dataframe - possibly better way of doing this but oh well
     dataframe = pd.DataFrame()
     dataframe['Cycle'] = df['Cycle']
+    dataframe['Full Cycle'] = np.ceil(df['Cycle']/2).apply(int)
+
     # For own personal use this was to link together samples with many files - can be done later though
     # dataframe['Filenumber'] = bio_file_df.reset_index().set_index('File').loc[file, 'Filenumber']
 
