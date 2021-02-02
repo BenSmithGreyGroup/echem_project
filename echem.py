@@ -55,7 +55,7 @@ def echem_file_loader(filepath):
         if len(names) == 1:
             df = xlsx.parse(0)
             df = new_land_processing(df)
-        elif record in names[0]:
+        elif "Record" in names[0]:
             df_list = [xlsx.parse(0)]
             col_names = df_list[0].columns
 
