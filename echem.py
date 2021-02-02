@@ -200,7 +200,7 @@ def arbin_excel(df):
     for cycle in df['half cycle'].unique():
         idx = df[df['half cycle'] == cycle].index
         df.loc[idx, 'Capacity'] = df.loc[idx, 'Capacity'] - min(df.loc[idx, 'Capacity'])
-    df['Voltage'] == df['Voltage(V)']
+    df['Voltage'] = df['Voltage(V)']
     return df
 
 def dqdv_single_cycle(capacity, voltage, 
