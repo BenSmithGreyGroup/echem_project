@@ -49,7 +49,7 @@ def echem_file_loader(filepath):
             print('Columns did not match known .txt column layous')
     
     elif extension in ['.xlsx', '.xls']:
-        xlsx = pd.ExcelFile('/content/ExportData.xlsx')
+        xlsx = pd.ExcelFile(os.path.join(filepath))
         names = xlsx.sheet_names
         # Edit this in a bit
         if len(names) == 1:
